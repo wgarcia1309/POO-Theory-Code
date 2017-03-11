@@ -14,7 +14,7 @@ public class CodeTheory {
         k=sc.nextInt();
         d=sc.nextInt();
         Campo c1 =new Campo(q,n);
-        
+        System.out.println(c1.Vectores());
      //zsubq es un campo?   
     }
     

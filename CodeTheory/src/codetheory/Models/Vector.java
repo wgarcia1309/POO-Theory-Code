@@ -1,6 +1,6 @@
 package codetheory.Models;
 public class Vector {
-    int x,y,z;
+    private int x,y,z;
     //3 componentes
     public Vector(int x, int y ,int z) {
       this.x=x;

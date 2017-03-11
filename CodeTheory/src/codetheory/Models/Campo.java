@@ -1,8 +1,8 @@
 package codetheory.Models;
 import java.util.ArrayList;
 public class Campo {
-    int v[],n;
-    ArrayList <Vector> vectores=new ArrayList();
+    private int v[],n;
+    private ArrayList <Vector> vectores=new ArrayList();
     public Campo(int q,int n) {
         v = new int[q];
         for (int i = 0; i < q; i++) {
@@ -17,11 +17,6 @@ public class Campo {
                 }
             }
         }
-    }
-    public void adicion(){
-    }
-    public void multiplicacion(){
-        
     }
     public String Conjunto(){
         String str="{";
@@ -43,4 +38,17 @@ public class Campo {
         str+="}";
         return str;
     }
+
+    public int getN() {
+        return n;
+    }
+
+    public int getQ() {
+        return v.length;
+    }
+    
+    public ArrayList<Vector> getVectores() {
+        return vectores;
+    }
+    
 }

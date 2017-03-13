@@ -1,5 +1,9 @@
 package codetheory.Models;
 
+/**
+ * Mardito William, no comenta nada '-.-
+ */
+
 import java.util.ArrayList;
 
 public class Base {

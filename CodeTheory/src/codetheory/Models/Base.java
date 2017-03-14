@@ -16,7 +16,6 @@ public class Base {
     public String LI(){
         
     }
-     */
     public ArrayList<Vector> GetCodigo() {
         ArrayList<Vector> v = new ArrayList();
         for (int i = 0; i < p.getQ(); i++) {
@@ -35,5 +34,5 @@ public class Base {
     public Vector mul(int x,Vector v) {
         Vector temp=new Vector( (v.getX()*x)%p.getQ() , (v.getY()*x)%p.getQ() ,(v.getZ()*x)%p.getQ());
         return temp;
-    }
+    }*/
 }

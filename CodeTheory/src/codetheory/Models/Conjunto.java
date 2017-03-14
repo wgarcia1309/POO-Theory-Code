@@ -10,13 +10,12 @@ public class Conjunto {
     */
     private ArrayList puntos;
     private int q;
-    
     public Conjunto(int q) {
         this.q = q;
-        puntos = new ArrayList();
+        puntos = new ArrayList<Integer>();
         if (q > 0) {
             if (primo()) {
-                for (int i = 0; i < q - 1; i++) {
+                for (int i = 0; i < q; i++) {
                     puntos.add(i);
                 }
             }
@@ -41,5 +40,8 @@ public class Conjunto {
             return str.substring(0,str.length()-1 )+ "}";
         }
         return "{}";
+    }
+    public ArrayList getPuntos() {
+        return puntos;
     }
 }

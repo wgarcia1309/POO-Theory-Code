@@ -26,7 +26,6 @@ public class Base {
     public String LI(){
         
     }
-     */
     public ArrayList<Vector> GetCodigo() {
         ArrayList<Vector> v = new ArrayList();
         for (int i = 0; i < p.getQ(); i++) {
@@ -67,5 +66,5 @@ public class Base {
         );
 
         return temp;
-    }
+    }*/
 }

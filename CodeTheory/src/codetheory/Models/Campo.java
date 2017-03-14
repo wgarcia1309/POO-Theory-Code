@@ -1,6 +1,7 @@
 package codetheory.Models;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 
 public class Campo {
 
@@ -44,11 +45,12 @@ public class Campo {
         str += "}";
         return str;
     }
+=======
+>>>>>>> refs/remotes/origin/Fq-n
 
-    public int getN() {
-        return n;
-    }
+public class Campo {
 
+<<<<<<< HEAD
     public int getQ() {
         return v.length;
     }
@@ -57,4 +59,22 @@ public class Campo {
         return vectores;
     }
 
+=======
+//    ArrayList<ArrayList<String>> permutationResult;
+//    private final int n;
+//    public Campo(ArrayList zq, int n) {
+//       this.n=n;
+//    }
+//  public ArrayList generatePermutations(ArrayList zq,int depth,int depthM, int val,int size,ArrayList temp,ArrayList pos){
+//      
+//    if(val==size){
+//          temp.add(val);
+//          pos.add(temp);
+//          return pos;
+//      } else {
+//         temp.add(val);
+//        generatePermutations(zq,depth,depthM,val+1,size,temp,pos);
+//      }
+//    }
+>>>>>>> refs/remotes/origin/Fq-n
 }

@@ -40,15 +40,14 @@ Para ser más prácticos si mostramos la suma en  q=3
 Ahora es necesario encontrar k vectores que generen un número determinado de m parejas
 Los cuales se van a seleccionar escogiendo todas las combinaciones de k vectores (Zq)^n hasta que sean Linealmente Independientes  y tenga distancia mínima d.
 ```
-Base={ K1 , k2 , .. , Kn }
+Base={ K1 , k2 , ... , Kn }
 ``` 
 
 Encontrar la distancia mínima (d), es muy simple es solamente verificar todos los puntos del conjunto solución del sistema, suponiendo que el conjunto solución fuese:
+```
+s={ (1,0,0) , (1,1,0) , (0,0,0) , (0,1,0) }
+```
 
-        ```
-        s={ (1,0,0) , (1,1,0) , (0,0,0) , (0,1,0) }
-        ``` 
- 
 - D( (1,0,0) , (1,1,0) )=1 
 - D( (1,0,0) , (0,0,0) )=1 
 - D( (1,0,0) , (0,1,0) )=2

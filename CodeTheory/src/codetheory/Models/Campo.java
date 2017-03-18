@@ -1,23 +1,36 @@
 package codetheory.Models;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
-public class Campo {
-
-//    ArrayList<ArrayList<String>> permutationResult;
-//    private final int n;
-//    public Campo(ArrayList zq, int n) {
-//       this.n=n;
-//    }
-//  public ArrayList generatePermutations(ArrayList zq,int depth,int depthM, int val,int size,ArrayList temp,ArrayList pos){
-//      
-//    if(val==size){
-//          temp.add(val);
-//          pos.add(temp);
-//          return pos;
-//      } else {
-//         temp.add(val);
-//        generatePermutations(zq,depth,depthM,val+1,size,temp,pos);
-//      }
-//    }
+public class Campo extends Conjunto{
+    public ArrayList<List<Integer>> vectores = new ArrayList<List<Integer>>();
+    int ncom;
+    public Campo(int ncom,int q) {
+        super(q);
+        this.ncom=ncom;
+        setPos(Math.pow(q, ncom));
+        
+    }
+     public void setPos(double x) {
+        for (int i = 0; i < x; i++) {
+            String temp=Integer.toString(i, q);
+            int tam=temp.length();
+            if(tam<ncom){
+                for (int j = 0; j <ncom-tam; j++) 
+                    temp="0"+temp;
+            }
+            ArrayList<Integer> ltemp=new ArrayList();
+            for (int j = 0; j < ncom; j++) {
+                ltemp.add(Integer.parseInt(temp.substring(j, j+1)) );
+            }
+            vectores.add(ltemp);
+        }
+    }
+    public void mostrarVec(){
+        for (int i = 0; i < vectores.size(); i++) {
+            System.out.println(vectores.get(i));
+        }
+    }
 }

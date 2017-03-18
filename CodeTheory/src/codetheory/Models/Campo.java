@@ -2,7 +2,6 @@ package codetheory.Models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class Campo extends Conjunto{
     public ArrayList<List<Integer>> vectores = new ArrayList<List<Integer>>();

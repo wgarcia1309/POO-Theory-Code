@@ -19,6 +19,11 @@ public class Vector {
         this.link = null;
     }
 
+    public Vector() {
+        this.x = -1;
+        this.link = null;
+    }
+
     public int getX() {
         return x;
     }
@@ -34,13 +39,26 @@ public class Vector {
     public void setLink(Vector link) {
         this.link = link;
     }
-    
+
     public void add(int s) {
-        Vector d=new Vector(s),temp=this;
-        while(temp.getLink()!=null){
-        temp=temp.getLink();
+        if (this.getX() == -1) {
+            this.setX(s);
+        } else {
+            Vector d = new Vector(s);
+            Vector temp = this;
+            while (temp.getLink() != null) {
+                temp = temp.getLink();
+            }
+            temp.setLink(d);
         }
-        temp.setLink(d);
     }
 
+    public void mostrarV() {
+        Vector temp = this;
+        while (temp != null) {
+            System.out.print(temp.getX() + " ");
+            temp = temp.getLink();
+        }
+        System.out.println("");
+    }
 }

@@ -18,29 +18,17 @@ public class CodeTheory {
     public static void MatrixI(int n, int k) {
         Vector v;
         int h = k - n;
-        MatrixI matrix=null;
-        Vector temp=null;
+        MatrixI matrix=new MatrixI();
         for (int i = 0; i < h; i++) {
-            if (i == 0) {
-                temp = new Vector(1);
-            } else {
-                temp = new Vector(0);
-            }
-                for (int j = 1; j < h; j++) {
-                    if(i==j)temp.add(1);
-                    else temp.add(0);
+            Vector temp=new Vector();
+               for (int j = 0; j < h; j++) {
+                        if(i==j)temp.add(1);
+                        else temp.add(0);
                 }
-                if(i==0){
-                    matrix =new MatrixI(temp);
-                }else{
-                    matrix.add(temp);
-                }
-            while (temp != null) {
-                System.out.print(temp.getX() + " ");
-                temp = temp.getLink();
-            }
-            System.out.println("");
+              matrix.add(temp);
         }
+        System.out.println("-------");
+        matrix.getPos(0);
     }
 
     public static void comienzo(int n, int k, int d, int q) {

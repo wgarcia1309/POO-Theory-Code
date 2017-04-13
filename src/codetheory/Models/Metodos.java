@@ -23,7 +23,7 @@ public class Metodos {
         while (cont < k) {
             contd = 0;
             while (contd < d) {
-                M.getV()
+                //M.getV()
                 contd++;
             }
         }
@@ -32,7 +32,7 @@ public class Metodos {
     private static int suma(int cont, int k,MatrixI M) {
         int x=0;
         while (cont < k) {
-         x=(M.getV().getX()+x)%;
+         //sx=(M.getV().getX()+x)%;
          M=M.getLink();
         }
         return x;

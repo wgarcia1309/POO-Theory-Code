@@ -19,6 +19,11 @@ public class MatrixI {
         this.Link = null;
     }
 
+    public MatrixI() {
+        this.v = null;
+        this.Link = null;
+    }
+
     public Vector getV() {
         return v;
     }
@@ -36,11 +41,31 @@ public class MatrixI {
     }
 
     public void add(Vector v) {
-        MatrixI temp = this;
-        while (temp.getLink() != null) {
-            temp = temp.getLink();
+        if (this.getV() == null) {
+            this.setV(v);
+        } else {
+            MatrixI temp = this;
+            while (temp.getLink() != null) {
+                temp = temp.getLink();
+            }
+            temp.setLink(new MatrixI(v));
         }
-        temp.setLink(new MatrixI(v));
     }
 
+    public Vector getPos(int k) {
+        MatrixI temp = this;
+        int i=0;
+        while (temp != null && k!=i) {
+            temp = temp.getLink();
+            i++;
+        }
+        return temp.getV();
+    }
+    public void mostarM() {
+        MatrixI temp = this;
+        while (temp!= null) {
+            temp.getV().mostrarV();
+            temp = temp.getLink();
+        }
+    }
 }

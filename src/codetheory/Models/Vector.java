@@ -61,4 +61,24 @@ public class Vector {
         }
         System.out.println("");
     }
+
+    public int length() {
+        int cont = 0;
+        Vector temp = this;
+        while (temp != null) {
+            temp = temp.getLink();
+            cont++;
+        }
+        return cont;
+    }
+
+    public int getPos(int k) {
+        Vector temp = this;
+        int i = 0;
+        while (temp != null && k != i) {
+            temp = temp.getLink();
+            i++;
+        }
+        return temp.getX();
+    }
 }

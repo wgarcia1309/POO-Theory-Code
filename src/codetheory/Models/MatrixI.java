@@ -61,6 +61,7 @@ public class MatrixI {
         }
         return temp.getV();
     }
+    
     public void mostarM() {
         MatrixI temp = this;
         while (temp!= null) {

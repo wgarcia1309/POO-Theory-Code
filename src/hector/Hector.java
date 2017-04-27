@@ -16,7 +16,7 @@ public class Hector {
     public static void main(String[] args) {
 //        MatrixI a = new MatrixI(5);
 //        Matrixh h = new Matrixh(4, 3,1,a.getMatrix());
-        basic(2,6);  
+        basic(3,100);  
         mostrar();
     }
 

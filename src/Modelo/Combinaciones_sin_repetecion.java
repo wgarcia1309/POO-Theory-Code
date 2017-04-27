@@ -1,19 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
-/**
- *
- * @author Estudiante
- */
 public class Combinaciones_sin_repetecion {
 
     static int z = 0;
     static int n_1;
-    static String[] com = new String[100];
+    static String[] com = new String[1000];
 
     /**
      * metodo que crea las combinaciones que en teoria sera las columnas que
@@ -28,7 +19,6 @@ public class Combinaciones_sin_repetecion {
         n_1=k;
         while (i < x) {
             com[i] = String.valueOf(i + 1);
-            System.out.println(com[i]);
             i++;
         }
         Perm2(com, "", k, x);
@@ -94,7 +84,6 @@ public class Combinaciones_sin_repetecion {
                 com[z] = h;
                 z++;
             } else {
-
                 System.out.println("no paso la prueba");
             }
         }

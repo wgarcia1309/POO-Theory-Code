@@ -21,11 +21,7 @@ public class Combinaciones {
         String[] com = new String[x];
         int i = 0;
         n_1=k;
-        while (i < x) {
-            com[i] = String.valueOf(i + 1);
-            i++;
-        }
-        Perm2(com, "", k, x);
+        Perm2("", k, x);
     }
 
     /**
@@ -35,16 +31,16 @@ public class Combinaciones {
      * @param n numero de columnas o elemntos de la combinacion
      * @param r
      */
-    private static void Perm2(String[] elem, String act, int n, int r) {
+    private static void Perm2( String act, int n, int r) {
         if (n == 0) {
             vector(act, n_1);
         } else {
-            for (int i = 0; i < r; i++) {
-                if (!act.contains(elem[i])) {
+            for (int i = 1; i <= r; i++) {
+                if (!act.contains(i+"")) {
                     if (n == 1) {
-                        Perm2(elem, act + elem[i], n - 1, r);
+                        Perm2( act + i, n - 1, r);
                     } else {
-                        Perm2(elem, act + elem[i] + ",", n - 1, r);
+                        Perm2( act + i + ",", n - 1, r);
                     }
                 }
             }

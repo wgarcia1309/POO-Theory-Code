@@ -15,16 +15,16 @@ public class Hector {
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Digite distancia minima d:");
-        int d = sc.nextInt();
-        System.out.println("Digite K:");
-        int k = sc.nextInt();
+        //System.out.println("Digite distancia minima d:");
+        //int d = sc.nextInt();
+        //System.out.println("Digite K:");
+        //int k = sc.nextInt();
 
-        Combinaciones o = new Combinaciones(k-1, d);
+        Combinaciones o = new Combinaciones(3,4);
         o.mostrarMatrizI();
-        MatrixI i = new MatrixI(d);
-        i.see();
-        Matrixh h = new Matrixh(d, k, o.getCom(), i.getMatrix());
-        h.see();
+        //MatrixI i = new MatrixI(d);
+        //i.see();
+        //Matrixh h = new Matrixh(d, k, o.getCom(), i.getMatrix());
+        //h.see();
     }
 }

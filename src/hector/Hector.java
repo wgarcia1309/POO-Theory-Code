@@ -15,13 +15,15 @@ public class Hector {
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        //System.out.println("Digite distancia minima d:");
-        //int d = sc.nextInt();
-        //System.out.println("Digite K:");
-        //int k = sc.nextInt();
+        System.out.println("Digite distancia minima d:");
+        int d = sc.nextInt();
+        System.out.println("Digite K:");
+        int k = sc.nextInt();
 //        Combinaciones o = new Combinaciones(2,9);
 //        o.mostrarMatrizI();
-        prueba a = new prueba(2, 9);
+        prueba a = new prueba(k,d);
+        a.getMa().see();
+        a.getMa().getI().see();
         //MatrixI i = new MatrixI(d);
         //i.see();
         //Matrixh h = new Matrixh(d, k, o.getCom(), i.getMatrix());

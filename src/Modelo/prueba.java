@@ -7,13 +7,17 @@ package Modelo;
 
 public class prueba {
 
-    public prueba(int k, int x) {
-        recur(k, x, 1, 1, "", "");
+    Matrixh1 ma;
+    int h=0;
+
+    public prueba(int k, int d) {
+        ma = new Matrixh1(d, k);
+        recur(k - 1, d, 1, 1, "", "");
     }
 
     public void recur(int k, int d, int k_1, int i, String act, String aux) {
-        if (k_1 <= k) {
-            while (i <= d) {
+        if (k_1 <= k && h!=k+1) {
+            while (i <= d && h!=k+1) {
                 aux = act;
                 if (k_1 != k) {
                     act = act + i + ",";
@@ -21,7 +25,9 @@ public class prueba {
                     act = act + i;
                 }
                 if (k_1 == k) {
-                    System.out.println(act);
+                    String[] Pos = act.split(",");
+                    ma.suma(Pos);
+                    h++;
                 } else {
                     recur(k, d, k_1 + 1, i + 1, act, aux);
                 }
@@ -31,4 +37,9 @@ public class prueba {
             k_1++;
         }
     }
+
+    public Matrixh1 getMa() {
+        return ma;
+    }
+    
 }

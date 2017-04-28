@@ -19,9 +19,9 @@ public class Hector {
         //int d = sc.nextInt();
         //System.out.println("Digite K:");
         //int k = sc.nextInt();
-
-        Combinaciones o = new Combinaciones(3,4);
-        o.mostrarMatrizI();
+//        Combinaciones o = new Combinaciones(2,9);
+//        o.mostrarMatrizI();
+        prueba a = new prueba(2, 9);
         //MatrixI i = new MatrixI(d);
         //i.see();
         //Matrixh h = new Matrixh(d, k, o.getCom(), i.getMatrix());

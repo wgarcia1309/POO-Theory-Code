@@ -1,10 +1,14 @@
 package Modelo;
 
-public class Combinaciones_sin_repetecion {
+public class Combinaciones {
 
     static int z = 0;
     static int n_1;
     static String[] com = new String[1000];
+
+    public static String[] getCom() {
+        return com;
+    }
 
     /**
      * metodo que crea las combinaciones que en teoria sera las columnas que
@@ -13,7 +17,7 @@ public class Combinaciones_sin_repetecion {
      * @param k el numero de elemntos que contendra la combinacion
      * @param x numero de columnas
      */
-    public static void basic(int k, int x) {
+    public Combinaciones(int k, int x) {
         String[] com = new String[x];
         int i = 0;
         n_1=k;
@@ -64,14 +68,10 @@ public class Combinaciones_sin_repetecion {
             while (i < z && sw == false) {
                 validador = 0;
                 String[] anteriorCom = separar(com[i]);
-                System.out.println(com[i]);
-                System.out.println(h);
                 for (int j = 0; j < n_1; j++) {
                     for (int k = 0; k < n_1; k++) {
-                        System.out.println(comAcual[j] + "compara con" + anteriorCom[k]);
                         if (comAcual[j].equals(anteriorCom[k])) {
                             validador++;
-                            System.out.println("entro");
                         }
                     }
                 }
@@ -84,7 +84,6 @@ public class Combinaciones_sin_repetecion {
                 com[z] = h;
                 z++;
             } else {
-                System.out.println("no paso la prueba");
             }
         }
     }
@@ -94,7 +93,7 @@ public class Combinaciones_sin_repetecion {
         return vector;
     }
 
-    public static void mostrar() {
+    public static void mostrarMatrizI() {
         for (int i = 0; i < z; i++) {
             System.out.println(com[i]);
         }

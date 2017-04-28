@@ -3,31 +3,28 @@ package Modelo;
 public class Matrixh {
 
     int[][] matrix;
-    int[] Vector;
+    int[] Vacum;
     int d, k;
 
     /**
      *
-     * @param d es la distancia minima
-     * @param k es la antidad de vectores
+     * @param d
+     * @param k
+     * @param comb vector de combinaciones
+     * @param Mi matrix identidad
      */
-    public Matrixh(int d, int k, int q, int[][] a) {
+    public Matrixh(int d, int k, String[] comb, int[][] Mi) {
         matrix = new int[d][k];
-        Vector = new int[d];
-        this.d = d;
-        this.k = k;
-        int i = 0, j = 0, j_1 = 1, c = 0;
-        while (i < d) {
-            while (j < k) {
-                while (c < d) {
-                    Vector[c] = (a[i][j] + a[i][j_1]) % q;
-                    System.out.print(Vector[c]);
-                    c++;
-                }
-                System.out.println("");
-                j++;
+        int z = 0;
+        for (int i = 0; i < k; i++) {
+            String[] Pos = comb[z].split(",");
+            suma(Pos, Mi, d);
+            for (int j = 0; j < d; j++) {
+                matrix[j][i] = Vacum[j];
             }
-            i++;
+            Pos = null;
+            Vacum = null;
+            z++;
         }
     }
 
@@ -37,6 +34,19 @@ public class Matrixh {
                 System.out.print(matrix[i][j] + "|");
             }
             System.out.println("");
+        }
+    }
+
+    private void suma(String[] pos, int[][] Mi, int d) {
+        Vacum = new int[d];
+        for (int i = 0; i < pos.length; i++) {
+
+            for (int j = 0; j < d; j++) {
+            int h=Integer.parseInt(pos[i]);
+                System.out.println("h="+h);
+                System.out.println(Mi[j][h]);
+                Vacum[j] = Vacum[j] + Mi[j][h];
+            }
         }
     }
 }

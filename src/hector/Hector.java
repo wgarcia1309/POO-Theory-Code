@@ -5,8 +5,8 @@
  */
 package hector;
 
-import static Modelo.Combinaciones_sin_repetecion.basic;
-import static Modelo.Combinaciones_sin_repetecion.mostrar;
+import Modelo.*;
+import java.util.Scanner;
 
 public class Hector {
 
@@ -14,10 +14,17 @@ public class Hector {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        MatrixI a = new MatrixI(5);
-//        Matrixh h = new Matrixh(4, 3,1,a.getMatrix());
-        basic(3,100);  
-        mostrar();
-    }
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite distancia minima d:");
+        int d = sc.nextInt();
+        System.out.println("Digite K:");
+        int k = sc.nextInt();
 
+        Combinaciones o = new Combinaciones(k-1, d);
+        o.mostrarMatrizI();
+        MatrixI i = new MatrixI(d);
+        i.see();
+        Matrixh h = new Matrixh(d, k, o.getCom(), i.getMatrix());
+        h.see();
+    }
 }

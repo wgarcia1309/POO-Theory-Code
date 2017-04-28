@@ -18,7 +18,6 @@ public class Combinaciones {
      * @param x numero de columnas
      */
     public Combinaciones(int k, int x) {
-        String[] com = new String[x];
         int i = 0;
         n_1=k;
         Perm2("", k, x);

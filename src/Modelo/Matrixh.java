@@ -8,8 +8,8 @@ public class Matrixh {
 
     /**
      *
-     * @param d
-     * @param k
+     * @param d distancia minina
+     * @param k numero de vectores
      * @param comb vector de combinaciones
      * @param Mi matrix identidad
      */

@@ -6,7 +6,9 @@
 package hector;
 
 import Modelo.*;
+import Vistas.Principal;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Hector {
 
@@ -14,6 +16,15 @@ public class Hector {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Principal p= new Principal();
+        try{
+        Thread.sleep(3000);
+        }catch(InterruptedException e){
+            JOptionPane.showMessageDialog(null, "Error"+e, "ERROR",JOptionPane.ERROR_MESSAGE);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error"+e, "ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+        p.setVisible(true);/*
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite distancia minima d:");
         int d = sc.nextInt();
@@ -28,5 +39,6 @@ public class Hector {
         //i.see();
         //Matrixh h = new Matrixh(d, k, o.getCom(), i.getMatrix());
         //h.see();
+        */
     }
 }

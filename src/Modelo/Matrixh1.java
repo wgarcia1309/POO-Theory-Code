@@ -11,11 +11,11 @@ public class Matrixh1 {
 
     /**
      *
-     * @param d
-     * @param k
-     * @param comb vector de combinaciones
-     * @param Mi matrix identidad
+     * @param d distancia minina
+     * @param k numero de vectores
      */
+    //param comb vector de combinaciones
+     //param Mi matrix identidad
     public Matrixh1(int d, int k) {
         this.d = d;
         this.k=k;

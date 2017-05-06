@@ -38,7 +38,6 @@ public class Validador {
                 if (i < k) {
                     control[j][i] = Pos[j];
                 } else {
-                    System.out.println(identidad[h][j]);
                     control[j][i] = identidad[h][j];
                 }
             }
@@ -48,22 +47,34 @@ public class Validador {
         }
         see();
         System.out.println("AQUI PUEDO REALIZAR EL PROCESO");
-        int limite = (int) Math.pow(q, d - 1);
+        double limite = (int)(factorial(n)/(factorial(d-1)*factorial((n)-(d-1))));
         boolean observador = true;
-        int l = 1;
+        int l = 0;
         while (observador == true && l < limite) {//si observador es falso no cumple que el subconjunto que analizo fue LI
             String columnas = vecColumnas[l];
             observador = comprobarLI(control, vecEscalares, columnas, n - k, d, q);
             l++;
         }
         if (observador == true) {//si paso la prueba asi que buscamos la segunda condicion un subconjunto de D columnas LD.
-            System.out.println("PASO LA PRUEBA");
+            System.out.println("_____________________PASO LA PRUEBA");
             //Aqui debo crear la funcion que verifique la segunda condicion
+        } else {
+            System.out.println("_____________________No Paso");
         }
     }
-    
+
+    public int factorial(int numero) {
+        if (numero == 0) {
+            return 1;
+        } else {
+            return numero * factorial(numero - 1);
+        }
+    }
+
     /**
-     * esta funcion recibe la matrizd de control y la combinacion de sus columnas que debe verificar y tambien importar la lista de escalares
+     * esta funcion recibe la matrizd de control y la combinacion de sus
+     * columnas que debe verificar y tambien importar la lista de escalares
+     *
      * @param control
      * @param vecEscalares
      * @param columnas
@@ -74,25 +85,33 @@ public class Validador {
      */
     public boolean comprobarLI(String[][] control, String[] vecEscalares, String columnas, int filas, int d, int q) {
         int contador = 0, resultado = 0;
-        int h = 1;       
+        int h = 1;
         String[] posColumnas = columnas.split(",");
         while (h < vecEscalares.length && contador < filas) {
-            System.out.println("escalares:"+vecEscalares[h]);
-            String[] escalar = vecEscalares[h].split(",");
+            //System.out.println("h:" + h);
+            //System.out.println("____escalares:" + vecEscalares[h]);
+            //System.out.println("----Columnas:" + columnas);
+            String[] escalar = vecEscalares[h].split("");
+            contador = 0;
             for (int i = 0; i < filas; i++) {
-                System.out.println("Componente:"+i);
+                resultado = 0;
                 for (int j = 0; j < d - 1; j++) {
-                    System.out.println(resultado+"+"+escalar[j]+"*"+control[i][Integer.parseInt(posColumnas[j])]+"mod"+q);
-                    resultado = resultado +(Integer.parseInt(escalar[j]) * Integer.parseInt(control[i][Integer.parseInt(posColumnas[j])])%q);
-                    System.out.println("="+resultado);
+                    resultado = resultado + (Integer.parseInt(escalar[j]) * Integer.parseInt(control[i][Integer.parseInt(posColumnas[j])]) % q);
+                    //System.out.print("(alfa" + escalar[j] + "*" + control[i][Integer.parseInt(posColumnas[j])] + ") mod " + q);
+                    if (j < d - 2) {
+                        //System.out.print(" + ");
+                    }
                 }
-            }
-            if (resultado == 0) {
-                contador++;
+                //System.out.println(" = " + resultado);
+                if (resultado == 0) {
+                    contador++;
+
+                }
             }
             h++;
         }
         if (contador == filas) {
+            System.out.println("Pelo el bollo");
             return false;// no paso la prueba
         } else {
             return true;// si son LI

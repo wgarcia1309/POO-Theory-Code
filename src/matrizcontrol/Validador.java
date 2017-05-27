@@ -56,10 +56,10 @@ public class Validador {
             l++;
         }
         if (observador == true) {//si paso la prueba asi que buscamos la segunda condicion un subconjunto de D columnas LD.
-            System.out.println("_____________________PASO LA PRUEBA");
+            System.out.println("__________________________________________PASO LA PRUEBA");
             //Aqui debo crear la funcion que verifique la segunda condicion
         } else {
-            System.out.println("_____________________No Paso");
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++No Paso");
         }
     }
 
@@ -70,7 +70,11 @@ public class Validador {
             return numero * factorial(numero - 1);
         }
     }
-
+    
+    /*Varios vectores libres del plano se dice que son linealmente dependientes 
+    si hay una combinación lineal de ellos que es igual al vector cero, sin que 
+    sean cero todos los coeficientes de la combinación lineal.*/
+    
     /**
      * esta funcion recibe la matrizd de control y la combinacion de sus
      * columnas que debe verificar y tambien importar la lista de escalares
@@ -88,24 +92,23 @@ public class Validador {
         int h = 1;
         String[] posColumnas = columnas.split(",");
         while (h < vecEscalares.length && contador < filas) {
-            //System.out.println("h:" + h);
-            //System.out.println("____escalares:" + vecEscalares[h]);
-            //System.out.println("----Columnas:" + columnas);
+            System.out.println("h:" + h);
+            System.out.println("____escalares:" + vecEscalares[h]);
+            System.out.println("----Columnas:" + columnas);
             String[] escalar = vecEscalares[h].split("");
             contador = 0;
             for (int i = 0; i < filas; i++) {
                 resultado = 0;
                 for (int j = 0; j < d - 1; j++) {
                     resultado = resultado + (Integer.parseInt(escalar[j]) * Integer.parseInt(control[i][Integer.parseInt(posColumnas[j])]) % q);
-                    //System.out.print("(alfa" + escalar[j] + "*" + control[i][Integer.parseInt(posColumnas[j])] + ") mod " + q);
+                    System.out.print("(alfa" + escalar[j] + "*" + control[i][Integer.parseInt(posColumnas[j])] + ") mod " + q);
                     if (j < d - 2) {
-                        //System.out.print(" + ");
+                        System.out.print(" + ");
                     }
                 }
-                //System.out.println(" = " + resultado);
-                if (resultado == 0) {
+                System.out.println(" = " + resultado);
+                if (resultado == 0) {// el resutlado de las tres columnas es cero es el vector nulo
                     contador++;
-
                 }
             }
             h++;

@@ -16,14 +16,15 @@ import java.io.IOException;
 public class Flat {
     BufferedWriter bw;
     MatrizH matrix;
+    
     public Flat(String site,MatrizH matrix) throws IOException {
         bw=new BufferedWriter(new FileWriter(site+"\\answer.tex"));
-        this.matrix=matrix;
+        this.matrix = matrix;
     }
     public  void crearH() throws IOException{
-    String r="",m[][]=matrix.getControlH();
-        for (int i = 0; i < matrix.getFilas; i++) {
-            for (int j = 0; j < matrix.getN; j++) {
+    String r="",m[][]= matrix.getControlH();
+        for (int i = 0; i < matrix.getFilas(); i++) {
+            for (int j = 0; j < matrix.getN(); j++) {
                 r=m[i][j] +" & ";
             }
             r="\r\r"+r+"\\\\\n";

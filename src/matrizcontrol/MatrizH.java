@@ -2,9 +2,9 @@ package matrizcontrol;
 
 public class MatrizH {
 
-    private int filas, columnas,n, q, k, d, ncom, contadorCampo = 0, contadorEscalares, contadorColumnas, qSubfila;
+    private int filas, filasG, columnasG, columnas, n, q, k, d, ncom, contadorCampo = 0, contadorEscalares, contadorColumnas, qSubfila;
     private String[] campo, vecEscalares, vecColumnas;
-    private String[][] matrixI, control;
+    private String[][] matrixI, controlH, matrixG;
     private int hector = 0;
 
     /**
@@ -27,7 +27,7 @@ public class MatrizH {
         this.vecColumnas = new String[(int) Math.pow(d - 1, columnas)];
         MatrixI matrixI = new MatrixI(n - k);
         this.matrixI = matrixI.getMatrix();
-        this.control = new String[n - k][n];
+        this.controlH = new String[n - k][n];
         crearCampo();
         System.out.println("Escalares:______________");
         combinarEscalares((int) Math.pow(q, d - 1));
@@ -35,6 +35,18 @@ public class MatrizH {
         combinarColumnas(d - 1, columnas - 1, 1, 0, "", "");
         System.out.println("Matrices de control:________________");
         crearMatrizControl(filas, qSubfila - 1, 1, 1, "", "", vecEscalares, vecColumnas);
+    }
+
+    public int getFilas() {
+        return filas;
+    }
+
+    public int getN() {
+        return n;
+    }
+
+    public String[][] getControlH() {
+        return controlH;
     }
 
     private void crearCampo() {
@@ -145,9 +157,9 @@ public class MatrizH {
             }
             for (int j = 0; j < n - k; j++) {
                 if (i < k) {
-                    control[j][i] = Pos[j];
+                    controlH[j][i] = Pos[j];
                 } else {
-                    control[j][i] = identidad[h][j];
+                    controlH[j][i] = identidad[h][j];
                 }
             }
             if (i >= k) {
@@ -161,14 +173,19 @@ public class MatrizH {
         int l = 0;
         while (observador == true && l < limite) {//si observador es falso no cumple que el subconjunto que analizo fue LI
             String columnas = vecColumnas[l];
-            observador = comprobarLI(control, vecEscalares, columnas, n - k, d, q);
+            observador = comprobarLI(controlH, vecEscalares, columnas, n - k, d, q);
             l++;
         }
         if (observador == true) {//si paso la prueba asi que buscamos la segunda condicion armar la matriz G_traspuesta
             verControl();
             System.out.println("__________________________________________PASO LA PRUEBA");
-
-            //Aqui debo crear la funcion que verifique la segunda condicion
+            hector = 1;
+            //Aqui debo crear la funcion que arme la Matriz G
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    
+                }
+            }
         } else {
 
             //System.out.println("+++No Paso");
@@ -235,7 +252,7 @@ public class MatrizH {
     public void verControl() {
         for (int i = 0; i < n - k; i++) {//limite filas que es n-k
             for (int j = 0; j < n; j++) {//limite de las columnas es n
-                System.out.print(control[i][j] + "|");
+                System.out.print(controlH[i][j] + "|");
             }
             System.out.println("");
         }

@@ -5,6 +5,7 @@
  */
 package Vistas;
 
+import static Vistas.Principal.a;
 import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.JFileChooser;
@@ -26,17 +27,29 @@ public class Final extends javax.swing.JFrame {
         this.setTitle("Buscardor de Codigos lineales");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        int v[][]={ {5,4,5},{0,1,2},{7,8,9} ,{4,5,5} };
+        String v[][]=a.getMatrixG();
         DefaultTableModel mcontrol =(DefaultTableModel)jTable1.getModel();
-        //tomando a k como4
-        for (int i = 0; i < v.length-1; i++)//columnas
-            mcontrol.addColumn("v"+(i+1));
-       for (int j = 0; j < 3; j++)//inicializacion de casillas
-            mcontrol.addRow(new Object[]{"0", "0", "0"});
-        for (int i = 0; i < v.length-1; i++){//valores de vectores
-            for (int j = 0; j < 3; j++)
-                mcontrol.setValueAt(v[i][j], i, j);
-        }
+        DefaultTableModel mgen =(DefaultTableModel)jTable2.getModel();
+        for (int i = 0; i < a.getN(); i++){//columnas
+                //mcontrol.addColumn("v"+(i+1));
+                mgen.addColumn("v"+(i+1));
+       }
+        /*
+            for (int j = 0; j < a.getK(); j++)//inicializacion de casillas
+                mcontrol.addRow(new Object[]{});
+        */
+        //add datas jtable2
+        System.out.println(mgen.getRowCount());
+        System.out.println(a.getN());
+        System.out.println(a.getK());
+            for (int j = 0; j < a.getK(); j++)//inicializacion de casillas
+                mgen.addRow(new Object[]{});
+            System.out.println(mgen.getRowCount());
+            for (int i = 0; i < a.getK(); i++){
+                for (int j = 0; j < a.getN(); j++){//inicializacion de casillas
+                    mgen.setValueAt(v[i][j], i, j);
+                }
+            }
         jLabel2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jLabel3.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jLabel4.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -101,13 +114,8 @@ public class Final extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
         jScrollPane2.setViewportView(jTable2);

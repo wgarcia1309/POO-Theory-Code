@@ -23,7 +23,8 @@ public class Principal extends javax.swing.JFrame {
         this.setTitle("Buscardor de Codigos lineales");
         this.setLocationRelativeTo(null);
     }
-
+    public static MatrizH a=null;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -123,14 +124,16 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Q debe ser primo", "ERROR",JOptionPane.ERROR_MESSAGE);
         }else{
             
-        MatrizH a = new MatrizH(nt,kt,qt,dt);//(n,k,q,d)
-            /*verrificaciones completadas
-                    procesos...
-            */
-            //si encuentra solucion
-            this.dispose();
-            Final vent =new Final();
-            vent.setVisible(true);
+        a = new MatrizH(nt,kt,qt,dt);//(n,k,q,d)
+        //n-8,k-3,q-2,d-5
+        //n=6,k=3,q=2,d=3
+                if(a.MatrizL()!=null){
+                    this.dispose();
+                    Final vent =new Final();
+                    vent.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado ninguna respuesta", "ERROR",JOptionPane.INFORMATION_MESSAGE);
+                }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
     /**

@@ -1,14 +1,26 @@
-package modelo;
+package Modelo;
 
 public class MatrizH {
 
-    private int filas, filasG, columnasG, columnas, n, q, k, d, ncom, contadorCampo = 0, contadorEscalares, contadorColumnas, qSubfila;
+    private int filas, columnas, n, q, k, d, ncom, contadorCampo = 0, contadorEscalares, contadorColumnas, qSubfila;
     private String[] campo, vecEscalares, vecColumnas;
     private String[][] matrixI, controlH, matrixG;
     private int hector = 0;
 
+    public String MatrizL() {
+        return matrixG[0][0];
+    }
+
+    public int getK() {
+        return k;
+    }
+    
+    public String[][] getMatrixG() {
+        return matrixG;
+    }
+    
     /**
-     *
+     *n-8,k-3,q-2,d-5
      * @param n
      * @param k
      * @param q pues q
@@ -28,6 +40,7 @@ public class MatrizH {
         MatrixI matrixI = new MatrixI(n - k);
         this.matrixI = matrixI.getMatrix();
         this.controlH = new String[n - k][n];
+        this.matrixG = new String[k][n];
         crearCampo();
         System.out.println("Escalares:______________");
         combinarEscalares((int) Math.pow(q, d - 1));
@@ -136,7 +149,7 @@ public class MatrizH {
                 if (k_1 == cantidadDeDatos && hector == 0) {
                     String[] Pos = act.split(",");
                     //Validador h = new Validador(campo, Pos, d, columnas, this.k, q, matrixI, vecEscalares, vecColumnas);
-                    llenarMatrizDeControl(d, n, k, Pos, campo, matrixI, vecEscalares, vecColumnas);
+                    llenarMatrizDeControl(d, n, k, Pos, campo, vecEscalares, vecColumnas);
                     Pos = null;
                 } else {
                     crearMatrizControl(cantidadDeDatos, ListaDePosibles, k_1 + 1, i + 1, act, aux, vecEscalares, vecColumnas);
@@ -148,7 +161,7 @@ public class MatrizH {
         }
     }
 
-    public void llenarMatrizDeControl(int d, int n, int k, String[] comb, String[] campo, String[][] identidad, String[] vecEscalares, String[] vecColumnas) {
+    public void llenarMatrizDeControl(int d, int n, int k, String[] comb, String[] campo, String[] vecEscalares, String[] vecColumnas) {
         String[] Pos = null;
         int h = 0;
         for (int i = 0; i < n; i++) {
@@ -159,7 +172,7 @@ public class MatrizH {
                 if (i < k) {
                     controlH[j][i] = Pos[j];
                 } else {
-                    controlH[j][i] = identidad[h][j];
+                    controlH[j][i] = matrixI[h][j];
                 }
             }
             if (i >= k) {
@@ -181,15 +194,25 @@ public class MatrizH {
             System.out.println("__________________________________________PASO LA PRUEBA");
             hector = 1;
             //Aqui debo crear la funcion que arme la Matriz G
-            MatrixI I2 =new MatrixI(filas);
-            matrixI = I2.getMatrix();
-            for (int i = 0; i < 10; i++) {
-                
-                for (int j = 0; j < 10; j++) {
-                    
+            MatrixI I2 = new MatrixI(filas);
+            String identidad[][] = I2.getMatrix(); 
+            h = 0;
+            for (int i = 0; i < n; i++) {
+                if (i < k) {
+                    Pos = campo[Integer.parseInt(comb[i])].split("");
                 }
-                
+                for (int j = 0; j < k; j++) {
+                    if (i < k) {
+                        matrixG[j][i] = identidad[j][i];
+                    } else {
+                        matrixG[j][i] = (-1 * Integer.parseInt(controlH[h][j]) + q) % q + "";
+                    }
+                }
+                if (i >= k) {
+                    h++;
+                }
             }
+            verG();
         } else {
 
             //System.out.println("+++No Paso");
@@ -263,6 +286,16 @@ public class MatrizH {
 
     }
 
+    public void verG() {
+        for (int i = 0; i < k; i++) {//limite filas que es n-k
+            for (int j = 0; j < n; j++) {//limite de las columnas es n
+                System.out.print(matrixG[i][j] + "|");
+            }
+            System.out.println("");
+        }
+
+    }
+
     public int getqSubfila() {
         return qSubfila;
     }
@@ -273,4 +306,4 @@ public class MatrizH {
         }
     }
 
-}  
+}

@@ -20,16 +20,31 @@ public class Flat {
     public Flat(String site,MatrizH matrix) throws IOException {
         bw=new BufferedWriter(new FileWriter(site+"\\answer.tex"));
         this.matrix = matrix;
+        crearGH();
+        bw.close();
     }
-    public  void crearH() throws IOException{
-    String r="",m[][]= matrix.getControlH();
-        for (int i = 0; i < matrix.getFilas(); i++) {
-            for (int j = 0; j < matrix.getN(); j++) {
-                r=m[i][j] +" & ";
-            }
-            r="\r\r"+r+"\\\\\n";
+    public  void crearGH() throws IOException{
+    String r="",m[][]= matrix.getMatrixG(),mc[][]=matrix.getControlH();
+        //control C//H
+        for (int i = 0; i < matrix.getFilas(); i++){
+                for (int j = 0; j < matrix.getN(); j++){//inicializacion de casillas
+                    r+=m[i][j] +" & ";
+                }
+                r=r.substring(0,r.length()-2);
+                r+="\\\\ \n";
         }
-    bw.write("\\documentclass{article}\n\\usepackage{amsmath}\\begin{document}\\[\\begin{bmatrix}"+r+"\\end{bmatrix}\\]\\end{document}");
+        bw.write("\\documentclass{article}\n\\usepackage{amsmath}\\begin{document}"+"\\section{Matriz control}\n"+"\\[\n\\begin{bmatrix}"+r+"\\end{bmatrix}\\]\n");
+        //matriz G//G
+        r="";
+        System.out.println("\n");
+        for (int i = 0; i < matrix.getK(); i++){
+                for (int j = 0; j < matrix.getN(); j++){//inicializacion de casillas
+                    r+=m[i][j] +" & ";
+                }
+                r=r.substring(0,r.length()-2);
+                r+="\\\\ \n";
+        }
+    bw.write("\\section{Matriz generadora}\n"+"\\[\\begin{bmatrix}"+r+"\\end{bmatrix}\\]\\end{document}");
     }
     
 }

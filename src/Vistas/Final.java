@@ -5,10 +5,14 @@
  */
 package Vistas;
 
+import Modelo.Fex;
+import Modelo.Flat;
+import Modelo.Fpdf;
 import static Vistas.Principal.a;
-import java.awt.Color;
 import java.awt.Cursor;
-import javax.swing.JFileChooser;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,29 +31,31 @@ public class Final extends javax.swing.JFrame {
         this.setTitle("Buscardor de Codigos lineales");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        String v[][]=a.getMatrixG();
+        String v[][]=a.getMatrixG(),vh[][]=a.getControlH();
+        
         DefaultTableModel mcontrol =(DefaultTableModel)jTable1.getModel();
         DefaultTableModel mgen =(DefaultTableModel)jTable2.getModel();
         for (int i = 0; i < a.getN(); i++){//columnas
-                //mcontrol.addColumn("v"+(i+1));
+                mcontrol.addColumn("v"+(i+1));
                 mgen.addColumn("v"+(i+1));
        }
-        /*
-            for (int j = 0; j < a.getK(); j++)//inicializacion de casillas
-                mcontrol.addRow(new Object[]{});
-        */
-        //add datas jtable2
-        System.out.println(mgen.getRowCount());
-        System.out.println(a.getN());
-        System.out.println(a.getK());
-            for (int j = 0; j < a.getK(); j++)//inicializacion de casillas
-                mgen.addRow(new Object[]{});
-            System.out.println(mgen.getRowCount());
-            for (int i = 0; i < a.getK(); i++){
-                for (int j = 0; j < a.getN(); j++){//inicializacion de casillas
-                    mgen.setValueAt(v[i][j], i, j);
-                }
+        
+        for (int j = 0; j < a.getFilas(); j++)//inicializacion de casillas
+            mcontrol.addRow(new Object[]{});
+        
+        for (int i = 0; i < a.getFilas(); i++){
+            for (int j = 0; j < a.getN(); j++){//inicializacion de casillas
+                mcontrol.setValueAt(vh[i][j], i, j);
             }
+        }
+        
+        for (int j = 0; j < a.getK(); j++)//inicializacion de casillas
+            mgen.addRow(new Object[]{});
+        for (int i = 0; i < a.getK(); i++){
+            for (int j = 0; j < a.getN(); j++){//inicializacion de casillas
+                mgen.setValueAt(v[i][j], i, j);
+            }
+        }
         jLabel2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jLabel3.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jLabel4.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -110,6 +116,7 @@ public class Final extends javax.swing.JFrame {
             new String [] {
             }
         ));
+        jTable1.setEnabled(false);
         jScrollPane1.setViewportView(jTable1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -118,6 +125,7 @@ public class Final extends javax.swing.JFrame {
             new String [] {
             }
         ));
+        jTable2.setEnabled(false);
         jScrollPane2.setViewportView(jTable2);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/64LaTeX_logo.png"))); // NOI18N
@@ -186,7 +194,7 @@ public class Final extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void archivos (){
+    public void archivos () throws IOException{
         int option = filec.showOpenDialog(this); //Abre el filechooser y almacena como se cerró la ventana
         if(option!=1 ){
             r=(filec.getSelectedFile()).toString() + "\\";
@@ -197,19 +205,37 @@ public class Final extends javax.swing.JFrame {
         
     }
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        archivos();
+        Fpdf d=null;
+        try {
+            archivos();
+            if(!r.equals(""))System.out.println("yei");//d=new Fpdf(r,a);
+        } catch (IOException ex) {
+            Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println(r);
         System.out.println("ok");
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        archivos();
+        Fex d=null;
+        try {
+            archivos();
+            if(!r.equals(""))System.out.println("yei");//d=new Fex(r,a);
+        } catch (IOException ex) {
+            Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println(r);
         System.out.println("-- ");
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        archivos();
+        Flat d=null;
+        try {
+            archivos();
+            if(!r.equals(""))d=new Flat(r,a);
+        } catch (IOException ex) {
+            Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println(r);    
         System.out.println("._.");
     }//GEN-LAST:event_jLabel4MouseClicked

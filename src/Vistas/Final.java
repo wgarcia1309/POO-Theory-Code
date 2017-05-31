@@ -6,7 +6,9 @@
 package Vistas;
 
 import Modelo.Exporter;
+import com.itextpdf.text.DocumentException;
 import Modelo.Files;
+import Modelo.Fpdf;
 import static Vistas.Principal.a;
 import java.awt.Cursor;
 import java.io.File;
@@ -218,15 +220,17 @@ public class Final extends javax.swing.JFrame {
     }
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        Files d = new Files(r, a);
+        Fpdf d=null;
         try {
             archivos();
-            if (!r.equals("") && r != null) {
-                //PDF
-            }
+            if(!r.equals(""))d=new Fpdf(r,a);//d=new Fpdf(r,a);
         } catch (IOException ex) {
             Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(r);
+        System.out.println("ok");
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

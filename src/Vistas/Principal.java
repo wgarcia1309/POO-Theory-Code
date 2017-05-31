@@ -20,7 +20,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setResizable(false);
-        this.setTitle("Buscardor de Codigos lineales");
+        this.setTitle("Buscador de Codigos lineales");
         this.setLocationRelativeTo(null);
     }
     public static MatrizH a=null;

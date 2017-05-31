@@ -5,9 +5,7 @@
  */
 package Vistas;
 
-import Modelo.Fex;
-import Modelo.Flat;
-import Modelo.Fpdf;
+import Modelo.Files;
 import static Vistas.Principal.a;
 import java.awt.Cursor;
 import java.io.IOException;
@@ -25,7 +23,8 @@ public class Final extends javax.swing.JFrame {
     /**
      * Creates new form Final
      */
-    public String r;
+    
+    public  String r;
     public Final() {
         initComponents();
         this.setTitle("Buscardor de Codigos lineales");
@@ -195,6 +194,7 @@ public class Final extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void archivos () throws IOException{
+        Files d=new Files(r,a);
         int option = filec.showOpenDialog(this); //Abre el filechooser y almacena como se cerró la ventana
         if(option!=1 ){
             r=(filec.getSelectedFile()).toString() + "\\";
@@ -205,39 +205,37 @@ public class Final extends javax.swing.JFrame {
         
     }
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        Fpdf d=null;
+        Files d=new Files(r,a);
         try {
             archivos();
-            if(!r.equals(""))System.out.println("yei");//d=new Fpdf(r,a);
+            if(!r.equals("") && r!=null){
+                //PDF
+            }
         } catch (IOException ex) {
             Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(r);
-        System.out.println("ok");
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        Fex d=null;
+        Files d=new Files(r,a);
         try {
             archivos();
-            if(!r.equals(""))System.out.println("yei");//d=new Fex(r,a);
+            if(!r.equals("") && r!=null){
+                //Excel
+            }
         } catch (IOException ex) {
             Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(r);
-        System.out.println("-- ");
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        Flat d=null;
+        Files d=new Files(r,a);
         try {
             archivos();
-            if(!r.equals(""))d=new Flat(r,a);
+            if(!r.equals("") && r!=null)d.crearLatex();
         } catch (IOException ex) {
             Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(r);    
-        System.out.println("._.");
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -14,13 +14,14 @@ public class MatrizH {
     public int getK() {
         return k;
     }
-    
+
     public String[][] getMatrixG() {
         return matrixG;
     }
-    
+
     /**
-     *n-8,k-3,q-2,d-5
+     * n-8,k-3,q-2,d-5
+     *
      * @param n
      * @param k
      * @param q pues q
@@ -86,6 +87,7 @@ public class MatrizH {
                 }
             }
             vecEscalares[contadorEscalares] = temp;
+
             System.out.println(vecEscalares[contadorEscalares]);
             contadorEscalares++;
         }
@@ -100,7 +102,7 @@ public class MatrizH {
                 } else {
                     act = act + i;
                 }
-                if (recorreCanDatos == cantidadDeDatos) {
+                if (recorreCanDatos == cantidadDeDatos && contadorColumnas < vecColumnas.length) {
                     vecColumnas[contadorColumnas] = act;
                     System.out.println(vecColumnas[contadorColumnas]);
                     contadorColumnas++;
@@ -148,6 +150,7 @@ public class MatrizH {
                 }
                 if (k_1 == cantidadDeDatos && hector == 0) {
                     String[] Pos = act.split(",");
+                    System.out.println("combinacion= " + act);
                     //Validador h = new Validador(campo, Pos, d, columnas, this.k, q, matrixI, vecEscalares, vecColumnas);
                     llenarMatrizDeControl(d, n, k, Pos, campo, vecEscalares, vecColumnas);
                     Pos = null;
@@ -165,7 +168,7 @@ public class MatrizH {
         String[] Pos = null;
         int h = 0;
         for (int i = 0; i < n; i++) {
-            if (i < k) {
+            if (i < n - k) {
                 Pos = campo[Integer.parseInt(comb[i])].split("");
             }
             for (int j = 0; j < n - k; j++) {
@@ -179,9 +182,14 @@ public class MatrizH {
                 h++;
             }
         }
-        //see();
+        verControl();
         //System.out.println("AQUI PUEDO REALIZAR EL PROCESO");
-        double limite = (int) (factorial(n) / (factorial(d - 1) * factorial((n) - (d - 1))));
+        double limite;
+        if (d - 1 == 1) {
+            limite = 1;
+        } else {
+            limite = (int) (factorial(n) / (factorial(d - 1) * factorial((n) - (d - 1))));
+        }
         boolean observador = true;
         int l = 0;
         while (observador == true && l < limite) {//si observador es falso no cumple que el subconjunto que analizo fue LI
@@ -195,7 +203,7 @@ public class MatrizH {
             hector = 1;
             //Aqui debo crear la funcion que arme la Matriz G
             MatrixI I2 = new MatrixI(filas);
-            String identidad[][] = I2.getMatrix(); 
+            String identidad[][] = I2.getMatrix();
             h = 0;
             for (int i = 0; i < n; i++) {
                 if (i < k) {

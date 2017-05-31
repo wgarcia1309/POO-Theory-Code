@@ -5,13 +5,18 @@
  */
 package Vistas;
 
+import Modelo.Exporter;
 import Modelo.Files;
 import static Vistas.Principal.a;
 import java.awt.Cursor;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,35 +28,39 @@ public class Final extends javax.swing.JFrame {
     /**
      * Creates new form Final
      */
-    
-    public  String r;
+    public String r;
+
     public Final() {
         initComponents();
         this.setTitle("Buscardor de Codigos lineales");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        String v[][]=a.getMatrixG(),vh[][]=a.getControlH();
-        
-        DefaultTableModel mcontrol =(DefaultTableModel)jTable1.getModel();
-        DefaultTableModel mgen =(DefaultTableModel)jTable2.getModel();
-        for (int i = 0; i < a.getN(); i++){//columnas
-                mcontrol.addColumn("v"+(i+1));
-                mgen.addColumn("v"+(i+1));
-       }
-        
+        String v[][] = a.getMatrixG(), vh[][] = a.getControlH();
+
+        DefaultTableModel mcontrol = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel mgen = (DefaultTableModel) jTable2.getModel();
+        for (int i = 0; i < a.getN(); i++) {//columnas
+            mcontrol.addColumn("v" + (i + 1));
+            mgen.addColumn("v" + (i + 1));
+        }
+
         for (int j = 0; j < a.getFilas(); j++)//inicializacion de casillas
+        {
             mcontrol.addRow(new Object[]{});
-        
-        for (int i = 0; i < a.getFilas(); i++){
-            for (int j = 0; j < a.getN(); j++){//inicializacion de casillas
+        }
+
+        for (int i = 0; i < a.getFilas(); i++) {
+            for (int j = 0; j < a.getN(); j++) {//inicializacion de casillas
                 mcontrol.setValueAt(vh[i][j], i, j);
             }
         }
-        
+
         for (int j = 0; j < a.getK(); j++)//inicializacion de casillas
+        {
             mgen.addRow(new Object[]{});
-        for (int i = 0; i < a.getK(); i++){
-            for (int j = 0; j < a.getN(); j++){//inicializacion de casillas
+        }
+        for (int i = 0; i < a.getK(); i++) {
+            for (int j = 0; j < a.getN(); j++) {//inicializacion de casillas
                 mgen.setValueAt(v[i][j], i, j);
             }
         }
@@ -193,22 +202,24 @@ public class Final extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void archivos () throws IOException{
-        Files d=new Files(r,a);
+
+    public void archivos() throws IOException {
+        Files d = new Files(r, a);
         int option = filec.showOpenDialog(this); //Abre el filechooser y almacena como se cerró la ventana
-        if(option!=1 ){
-            r=(filec.getSelectedFile()).toString() + "\\";
+        if (option != 1) {
+            r = (filec.getSelectedFile()).toString() + "\\";
         } else {
-            r="";
-            JOptionPane.showMessageDialog(rootPane, "Error, seleccione un escritorio","Error",JOptionPane.ERROR_MESSAGE);
+            r = "";
+            JOptionPane.showMessageDialog(rootPane, "Error, seleccione un escritorio", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }
+
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        Files d=new Files(r,a);
+        Files d = new Files(r, a);
         try {
             archivos();
-            if(!r.equals("") && r!=null){
+            if (!r.equals("") && r != null) {
                 //PDF
             }
         } catch (IOException ex) {
@@ -217,11 +228,25 @@ public class Final extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        Files d=new Files(r,a);
+        Files d = new Files(r, a);
         try {
             archivos();
-            if(!r.equals("") && r!=null){
-                //Excel
+            if (!r.equals("") && r != null) {
+                System.out.println("entro!");
+                List<JTable> tb = new ArrayList<JTable>();
+                List<String> nom = new ArrayList<String>();
+                tb.add(jTable1);
+                nom.add("Matriz H");
+                tb.add(jTable2);
+                nom.add("Matriz G");
+                try {
+                    Exporter e = new Exporter(new File(r), tb, nom);
+                    if (e.export()) {
+                        JOptionPane.showMessageDialog(null, "Los datos fueron exportados a excel en el directorio seleccionado", "Mensaje de Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Hubo un error " + e.getMessage(), " Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } catch (IOException ex) {
             Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
@@ -229,17 +254,19 @@ public class Final extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        Files d=new Files(r,a);
+        Files d = new Files(r, a);
         try {
             archivos();
-            if(!r.equals("") && r!=null)d.crearLatex();
+            if (!r.equals("") && r != null) {
+                d.crearLatex();
+            }
         } catch (IOException ex) {
             Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Principal p= new Principal();
+        Principal p = new Principal();
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

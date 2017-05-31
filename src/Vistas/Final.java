@@ -15,8 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -228,10 +230,15 @@ public class Final extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        Files d = new Files(r, a);
-        try {
-            archivos();
-            if (!r.equals("") && r != null) {
+        //Files d = new Files(r, a);
+        //archivos();
+            JFileChooser chooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de excel", "xls");
+            chooser.setFileFilter(filter);
+            chooser.setDialogTitle("Guardar archivo");
+            chooser.setAcceptAllFileFilterUsed(false);
+            //if (!r.equals("") && r != null) {
+            if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {    
                 System.out.println("entro!");
                 List<JTable> tb = new ArrayList<JTable>();
                 List<String> nom = new ArrayList<String>();
@@ -239,8 +246,9 @@ public class Final extends javax.swing.JFrame {
                 nom.add("Matriz H");
                 tb.add(jTable2);
                 nom.add("Matriz G");
+                String file = chooser.getSelectedFile().toString().concat(".xls");
                 try {
-                    Exporter e = new Exporter(new File(r), tb, nom);
+                    Exporter e = new Exporter(new File(file), tb, nom);
                     if (e.export()) {
                         JOptionPane.showMessageDialog(null, "Los datos fueron exportados a excel en el directorio seleccionado", "Mensaje de Informacion", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -248,9 +256,7 @@ public class Final extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Hubo un error " + e.getMessage(), " Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            //}
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked

@@ -20,11 +20,11 @@ public class MatrizH {
     }
 
     /**
-     * n-8,k-3,q-2,d-5
+     * Costructor de la Matriz H
      *
-     * @param n
-     * @param k
-     * @param q pues q
+     * @param n < 13
+     * @param k < n
+     * @param q N Primo
      */
     public MatrizH(int n, int k, int q, int d) {
         this.n = n;
@@ -63,6 +63,11 @@ public class MatrizH {
         return controlH;
     }
 
+     /**
+     * Este metodo genera un campo Vectorial
+     * a base de combinaciones.
+     *
+     */
     private void crearCampo() {
         for (int i = 0; i < qSubfila; i++) {
             String temp = Integer.toString(i, q);
@@ -76,7 +81,11 @@ public class MatrizH {
             contadorCampo++;
         }
     }
-
+ /**
+     * Este metodo Combina los escalares del Vector de Escalares.
+     *
+     *@param limite numero de iteraciones al combinar.
+     */
     private void combinarEscalares(int limite) {
         for (int i = 0; i < limite; i++) {
             String temp = Integer.toString(i, q);
@@ -93,6 +102,14 @@ public class MatrizH {
         }
     }
 
+     /**
+     * Este metodo genera las combinaciones de las columnas a partir de
+     * la cantidad de datos d-1 y el tamaño maximo de los posibles candidatos.
+     * 
+     *@param cantidadDeDatos d-1.
+     *@param ListaDePosibles colummnas -1.
+
+     */
     public void combinarColumnas(int cantidadDeDatos, int ListaDePosibles, int recorreCanDatos, int i, String act, String aux) {
         if (recorreCanDatos <= cantidadDeDatos) {
             while (i <= ListaDePosibles) {
@@ -116,6 +133,14 @@ public class MatrizH {
         }
     }
 
+         /**
+     * Este metodo genera las combinaciones de los escalares a partir de
+     * la cantidad de datos y el tamaño maximo de los posibles candidatos.
+     * 
+     *@param cantidadDeDatos nun escalares.
+     *@param ListaDePosibles tamaño maximo.
+
+     */
     public void combinarEscalares(int cantidadDeDatos, int ListaDePosibles, int recorreCanDatos, int i, String act, String aux) {
         if (recorreCanDatos <= cantidadDeDatos) {
             while (i <= ListaDePosibles) {
@@ -138,6 +163,12 @@ public class MatrizH {
             recorreCanDatos++;
         }
     }
+      /**
+     * Este metodo crea la matriz de control a partir de los parametros en el constructor.
+     * 
+     *@param cantidadDeDatos filas.
+     *@param ListaDePosibles qSubfila.
+     */
 
     public void crearMatrizControl(int cantidadDeDatos, int ListaDePosibles, int k_1, int i, String act, String aux, String[] vecEscalares, String[] vecColumnas) {
         if (k_1 <= cantidadDeDatos && hector == 0) {
@@ -164,6 +195,12 @@ public class MatrizH {
         }
     }
 
+         /**
+     * Este metodo llena la matriz de control a partir de los parametros.
+     * 
+     *@param comb cadena de caracteres con las combinaciones.
+     *@param campo atributo de clase.
+     */
     public void llenarMatrizDeControl(int d, int n, int k, String[] comb, String[] campo, String[] vecEscalares, String[] vecColumnas) {
         String[] Pos = null;
         int h = 0;
@@ -239,16 +276,16 @@ public class MatrizH {
     si hay una combinación lineal de ellos que es igual al vector cero, sin que 
     sean cero todos los coeficientes de la combinación lineal.*/
     /**
-     * esta funcion recibe la matrizd de control y la combinacion de sus
-     * columnas que debe verificar y tambien importar la lista de escalares
+     * Esta funcion recibe la matriz de control y la combinacion de sus
+     * columnas que a verificar y tambien importa la lista de escalares.
      *
-     * @param control
-     * @param vecEscalares
-     * @param columnas
+     * @param control datos matriz de control
+     * @param vecEscalares datos vec escalares
+     * @param columnas datos columnas
      * @param filas mandamos n-k
      * @param d
      * @param q
-     * @return
+     * @return booleano que define si se pasa la prueba
      */
     public boolean comprobarLI(String[][] control, String[] vecEscalares, String columnas, int filas, int d, int q) {
         int contador = 0, resultado = 0;
@@ -284,6 +321,9 @@ public class MatrizH {
         }
     }
 
+         /**
+     * Muestra los elementos de la matriz de control.
+     */
     public void verControl() {
         for (int i = 0; i < n - k; i++) {//limite filas que es n-k
             for (int j = 0; j < n; j++) {//limite de las columnas es n
@@ -293,7 +333,9 @@ public class MatrizH {
         }
 
     }
-
+     /**
+     * Muestra los elementos de la matriz auxiliar G.
+     */
     public void verG() {
         for (int i = 0; i < k; i++) {//limite filas que es n-k
             for (int j = 0; j < n; j++) {//limite de las columnas es n
@@ -308,6 +350,9 @@ public class MatrizH {
         return qSubfila;
     }
 
+         /**
+     * Muestra los elementos del campo.
+     */
     public void mostrarCampo() {
         for (int i = 0; i < contadorCampo; i++) {
             System.out.println(campo[i]);

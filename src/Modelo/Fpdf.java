@@ -5,22 +5,23 @@
  */
 package Modelo;
 
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.Font;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Fpdf {
 
     private Font fuenteBold = new Font(Font.FontFamily.COURIER, 20, Font.BOLD);
+      
+    /**
+     * Construye un tipo Ffpdf y a partir del cual exporta a .pdf.
+     *
+     * @param site informacion de proceso
+     * @param matrix informacion a exportar
+
+     */
 
     public Fpdf(String site, MatrizH matrix) throws IOException, DocumentException {
         FileOutputStream archivo = new FileOutputStream(site + "\\answer.pdf");
@@ -51,6 +52,12 @@ public class Fpdf {
         doc.add(table);
         doc.close();
     }
+          
+    /**
+     * Establece el formato del texto a ingresar en el archivo .pdf.
+     *
+     * @param texto informacion a exportar
+     */
 
     private Paragraph gettittle(String texto) {
         Paragraph p = new Paragraph();

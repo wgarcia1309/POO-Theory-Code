@@ -15,7 +15,7 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
 /**
- *
+ * Exporter, encapsula y exporta informacion a formato xls.
  * @author IdlhDeveloper
  */
 public class Exporter {
@@ -24,6 +24,14 @@ public class Exporter {
     private List<JTable> tablas;
     private List<String> nom_files;
 
+    
+    /**
+     * Crea un tipo Exporter para facilitar el manejo de datos a exportar.
+     * 
+     * @param file archivo a convertir.
+     * @param tablas informacion a convertir.
+     * @param nom_files informacion de utilidad.
+     */
     public Exporter(File file, List<JTable> tablas, List<String> nom_files) throws Exception {
         this.file = file;
         this.tablas = tablas;
@@ -33,6 +41,11 @@ public class Exporter {
         }
     }
 
+    /**
+     * La funcion "export" exporta la informacion en forma de archivo .xls.
+     * 
+     * @return boolano, reporta exito del proceso.
+     */
     public boolean export() {
         try {
             System.out.println("proceso");

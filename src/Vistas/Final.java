@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -33,16 +34,22 @@ public class Final extends javax.swing.JFrame {
      * Creates new form Final
      */
     public String r;
-
+  
+      /**
+     * Define los atributos de la vista, toma los valores de a y los 
+     * utiliza para realizar las operaciones necesarias para llenar las tablas.
+     */
     public Final() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("../images/binary-code.png")).getImage());
         this.setTitle("Buscardor de Codigos lineales");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+     
         String v[][] = a.getMatrixG(), vh[][] = a.getControlH();
-
         DefaultTableModel mcontrol = (DefaultTableModel) jTable1.getModel();
         DefaultTableModel mgen = (DefaultTableModel) jTable2.getModel();
+        
         for (int i = 0; i < a.getN(); i++) {//columnas
             mcontrol.addColumn("v" + (i + 1));
             mgen.addColumn("v" + (i + 1));
@@ -189,10 +196,13 @@ public class Final extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+  /**
+     * Crea el archivo a exportar, abre el filechooser y 
+     * almacena como se cerró la ventana
+     */
     public void archivos() throws IOException {
         Files d = new Files(r, a);
-        int option = filec.showOpenDialog(this); //Abre el filechooser y almacena como se cerró la ventana
+        int option = filec.showOpenDialog(this); 
         if (option != 1) {
             r = (filec.getSelectedFile()).toString() + "\\";
         } else {
@@ -202,6 +212,9 @@ public class Final extends javax.swing.JFrame {
 
     }
 
+     /**
+     *Exporta a .PDF.
+     */
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         Fpdf d=null;
         try {
@@ -215,7 +228,10 @@ public class Final extends javax.swing.JFrame {
         System.out.println(r);
         System.out.println("ok");
     }//GEN-LAST:event_jLabel2MouseClicked
-
+  
+    /**
+     *Exporta a Excel.
+     */
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         //Files d = new Files(r, a);
         //archivos();
@@ -245,7 +261,9 @@ public class Final extends javax.swing.JFrame {
             }
             //}
     }//GEN-LAST:event_jLabel3MouseClicked
-
+  /**
+     * Exporta a Latex.
+     */
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         Files d = new Files(r, a);
         try {
@@ -257,9 +275,11 @@ public class Final extends javax.swing.JFrame {
             Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jLabel4MouseClicked
-
+  /**
+     * Regresa a Principal.java. 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                        Principal p = new Principal();
+        Principal p = new Principal();
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

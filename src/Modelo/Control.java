@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class Control {
 
     public static void main(String[] args) {
-        Principal p= new Principal();
+        Principal p=new Principal();
         try{
         Thread.sleep(3000);
         }catch(InterruptedException e){

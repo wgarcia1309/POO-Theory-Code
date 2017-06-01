@@ -7,6 +7,7 @@ package Vistas;
 
 import javax.swing.JOptionPane;
 import Modelo.MatrizH;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("../images/binary-code.png")).getImage());
         this.setResizable(false);
         this.setTitle("Buscador de Codigos lineales");
         this.setLocationRelativeTo(null);
@@ -88,7 +90,10 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     *Captura los valores de la interface grafica y crea una MatrizH 
+     *con la que trabajar, llama a Final.java de ser posible el calculo.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int qt=Integer.parseInt(q.getValue().toString());
         int nt=Integer.parseInt(n.getValue().toString());
@@ -102,7 +107,8 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Q debe ser primo", "ERROR",JOptionPane.ERROR_MESSAGE);
         }else{
             
-        a = new MatrizH(nt,kt,qt,dt);//(n,k,q,d)
+        a = new MatrizH(nt,kt,qt,dt);
+        //(n,k,q,d)
         //n-8,k-3,q-2,d-5
         //n=6,k=3,q=2,d=3
                 if(a.MatrizL()!=null){
@@ -114,9 +120,12 @@ public class Principal extends javax.swing.JFrame {
                 }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+    
     /**
      *Verifica si un numero es primo
+     * 
      *@param n numero a verificar
+     * 
      * @return si es primo o no
      */
     private static boolean primo(int n){

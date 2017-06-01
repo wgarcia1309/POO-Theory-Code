@@ -14,17 +14,31 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Files, encapsula e importa informacion a formato Latex.
  * @author PC
  */
 public class Files {
     String site;
     MatrizH matrix;
     
+
+    /**
+     * Construye un tipo File necesario para exportar a Latex.
+     *
+     * @param site informacion de proceso
+     * @param matrix informacion a exportar
+
+     */
     public Files(String site,MatrizH matrix) {
         this.matrix = matrix;
         this.site=site;
     }
+    
+
+    /**
+     * Este metodo exporta la informacion mediante la creacion de archivo Latex.
+     * 
+     */
     public void crearLatex(){
         try{
         BufferedWriter bw=new BufferedWriter(new FileWriter(site+"\\answer.tex"));

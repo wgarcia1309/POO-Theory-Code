@@ -5,11 +5,11 @@
  */
 package Vistas;
 
-import Modelo.Exporter;
 import com.itextpdf.text.DocumentException;
-import Modelo.Files;
-import Modelo.Fpdf;
 import static Vistas.Principal.a;
+import static Controlador.Control.Crearexcel;
+import static Controlador.Control.Crearpdf;
+import static Controlador.Control.crearLatex;
 import java.awt.Cursor;
 import java.io.File;
 import java.io.IOException;
@@ -34,10 +34,10 @@ public class Final extends javax.swing.JFrame {
      * Creates new form Final
      */
     public String r;
-  
-      /**
-     * Define los atributos de la vista, toma los valores de a y los 
-     * utiliza para realizar las operaciones necesarias para llenar las tablas.
+
+    /**
+     * Define los atributos de la vista, toma los valores de a y los utiliza
+     * para realizar las operaciones necesarias para llenar las tablas.
      */
     public Final() {
         initComponents();
@@ -45,11 +45,11 @@ public class Final extends javax.swing.JFrame {
         this.setTitle("Buscardor de Codigos lineales");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-     
+
         String v[][] = a.getMatrixG(), vh[][] = a.getControlH();
         DefaultTableModel mcontrol = (DefaultTableModel) jTable1.getModel();
         DefaultTableModel mgen = (DefaultTableModel) jTable2.getModel();
-        
+
         for (int i = 0; i < a.getN(); i++) {//columnas
             mcontrol.addColumn("v" + (i + 1));
             mgen.addColumn("v" + (i + 1));
@@ -197,12 +197,11 @@ public class Final extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
   /**
-     * Crea el archivo a exportar, abre el filechooser y 
-     * almacena como se cerró la ventana
+     * Crea el archivo a exportar, abre el filechooser y almacena como se cerró
+     * la ventana
      */
     public void archivos() throws IOException {
-        Files d = new Files(r, a);
-        int option = filec.showOpenDialog(this); 
+        int option = filec.showOpenDialog(this);
         if (option != 1) {
             r = (filec.getSelectedFile()).toString() + "\\";
         } else {
@@ -212,14 +211,15 @@ public class Final extends javax.swing.JFrame {
 
     }
 
-     /**
-     *Exporta a .PDF.
+    /**
+     * Exporta a .PDF.
      */
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        Fpdf d=null;
         try {
             archivos();
-            if(!r.equals(""))d=new Fpdf(r,a);//d=new Fpdf(r,a);
+            if (!r.equals("")) {
+                Crearpdf(r, a);//d=new Fpdf(r,a);
+            }
         } catch (IOException ex) {
             Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
@@ -228,55 +228,42 @@ public class Final extends javax.swing.JFrame {
         System.out.println(r);
         System.out.println("ok");
     }//GEN-LAST:event_jLabel2MouseClicked
-  
+
     /**
-     *Exporta a Excel.
+     * Exporta a Excel.
      */
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        //Files d = new Files(r, a);
-        //archivos();
-            JFileChooser chooser = new JFileChooser();
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de excel", "xls");
-            chooser.setFileFilter(filter);
-            chooser.setDialogTitle("Guardar archivo");
-            chooser.setAcceptAllFileFilterUsed(false);
-            //if (!r.equals("") && r != null) {
-            if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {    
-                System.out.println("entro!");
+        try {
+            archivos();
+            if (!r.equals("")) {
                 List<JTable> tb = new ArrayList<JTable>();
                 List<String> nom = new ArrayList<String>();
                 tb.add(jTable1);
                 nom.add("Matriz H");
                 tb.add(jTable2);
                 nom.add("Matriz G");
-                String file = chooser.getSelectedFile().toString().concat(".xls");
-                try {
-                    Exporter e = new Exporter(new File(file), tb, nom);
-                    if (e.export()) {
-                        JOptionPane.showMessageDialog(null, "Los datos fueron exportados a excel en el directorio seleccionado", "Mensaje de Informacion", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Hubo un error " + e.getMessage(), " Error", JOptionPane.ERROR_MESSAGE);
-                }
+                String file = r + "\\answer.xls";
+                Crearexcel(new File(file), tb, nom);
             }
-            //}
+        } catch (IOException ex) {
+            Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel3MouseClicked
-  /**
+    /**
      * Exporta a Latex.
      */
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        Files d = new Files(r, a);
         try {
             archivos();
             if (!r.equals("") && r != null) {
-                d.crearLatex();
+                crearLatex(r, a);
             }
         } catch (IOException ex) {
             Logger.getLogger(Final.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jLabel4MouseClicked
-  /**
-     * Regresa a Principal.java. 
+    /**
+     * Regresa a Principal.java.
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Principal p = new Principal();
